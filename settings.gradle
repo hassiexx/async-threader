@@ -1,0 +1,3 @@
+rootProject.name = 'async-threader'
+include 'sample'
+include 'library'
