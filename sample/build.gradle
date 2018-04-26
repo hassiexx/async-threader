@@ -1,14 +1,10 @@
-group 'uk.co.hassieswift621.libraries'
-version '0.1.0-alpha.1'
+group = 'uk.co.hassieswift621.libraries'
+version = '0.1.0-beta.1'
 
 apply plugin: 'java'
 
 sourceCompatibility = 1.8
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation project(':library')
 }

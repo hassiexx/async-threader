@@ -6,10 +6,10 @@ package uk.co.hassieswift621.libraries.asyncthreader;
 public interface Callback<T> {
 
     /**
-     * The callback to run if the task is completed successfully.
-     * @param result The result from the task.
+     * The callback to run if the task completed successfully.
+     * @param response The response from the task.
      */
-    void onSuccess(T result);
+    void onSuccess(T response);
 
     /**
      * The callback to run if the task failed / runs into an error.

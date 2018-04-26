@@ -51,7 +51,7 @@ public class AsyncThreader {
      * Submit a request for execution.
      * @param request The request to execute.
      */
-    public void execute(Request<?> request) {
+    public <T> void execute(Request<T> request) {
         mExecutorService.submit(request);
     }
 
