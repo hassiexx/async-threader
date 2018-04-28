@@ -36,9 +36,9 @@ public class AsyncThreaderSample {
                 },
                 new Callback<Integer>() {
                     @Override
-                    public void onSuccess(Integer result) {
+                    public void onSuccess(Integer response) {
                         // Do work with the response here.
-                        System.out.println("Finished executing task, here is the result: " + result);
+                        System.out.println("Finished executing task, here is the response: " + response);
                     }
 
                     @Override
@@ -64,6 +64,9 @@ public class AsyncThreaderSample {
                 e.printStackTrace();
             }
         }
+
+        // Shutdown the async threader.
+        asyncThreader.shutdown();
 
     }
 
