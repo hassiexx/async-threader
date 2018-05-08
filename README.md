@@ -1,6 +1,5 @@
-Async Threader
+Async Threader [![CircleCI](https://circleci.com/gh/hassieswift621/async-threader.svg?style=svg)](https://circleci.com/gh/hassieswift621/async-threader) [ ![Download](https://api.bintray.com/packages/hassieswift621/maven/async-threader/images/download.svg) ](https://bintray.com/hassieswift621/maven/async-threader/_latestVersion) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/14333c1f3d0b44ca9f2efcdb375f498a)](https://www.codacy.com/app/hassieswift621/async-threader?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hassieswift621/async-threader&amp;utm_campaign=Badge_Grade)
 ==============
-[![CircleCI](https://circleci.com/gh/hassieswift621/async-threader.svg?style=svg)](https://circleci.com/gh/hassieswift621/async-threader) [ ![Download](https://api.bintray.com/packages/hassieswift621/maven/async-threader/images/download.svg) ](https://bintray.com/hassieswift621/maven/async-threader/_latestVersion)
 
 Async Threader is a simple to use type-safe Java asynchronous threader which creates a thread pool and uses callable and future tasks to execute tasks asynchronously.
 
