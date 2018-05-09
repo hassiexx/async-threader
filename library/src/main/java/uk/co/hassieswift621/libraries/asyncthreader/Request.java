@@ -9,16 +9,19 @@ import java.util.concurrent.FutureTask;
  */
 public class Request<T> extends FutureTask<T> {
 
-    private final Callback<T> mCallback;
+    private final IResponse<T> mResponse;
+    private final IError mError;
 
     /**
-     * Create the request.
-     * @param callable The task to execute.
-     * @param callback The callback to run after the task is executed.
+     * Create a request.
+     * @param callable The callable to execute.
+     * @param response The response callback.
+     * @param error The error callback.
      */
-    public Request(Callable<T> callable, Callback<T> callback) {
+    public Request(Callable<T> callable, IResponse<T> response, IError error) {
         super(callable);
-        mCallback = callback;
+        mResponse = response;
+        mError = error;
     }
 
     /**
@@ -26,13 +29,12 @@ public class Request<T> extends FutureTask<T> {
      */
     @Override
     protected void done() {
-
         try {
-            mCallback.onSuccess(this.get());
+            mResponse.onResponse(this.get());
         } catch (InterruptedException e) {
-            mCallback.onFailure(e);
+            mError.onError(e);
         } catch (ExecutionException e) {
-            mCallback.onFailure(e.getCause());
+            mError.onError(e.getCause());
         }
     }
 }

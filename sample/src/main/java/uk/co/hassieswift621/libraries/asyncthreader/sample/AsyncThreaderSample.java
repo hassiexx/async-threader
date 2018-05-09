@@ -1,10 +1,7 @@
 package uk.co.hassieswift621.libraries.asyncthreader.sample;
 
 import uk.co.hassieswift621.libraries.asyncthreader.AsyncThreader;
-import uk.co.hassieswift621.libraries.asyncthreader.Callback;
 import uk.co.hassieswift621.libraries.asyncthreader.Request;
-
-import java.util.concurrent.Callable;
 
 /**
  * Created by Hassie on Thursday, 26 April, 2018 - 13:42.
@@ -20,33 +17,26 @@ public class AsyncThreaderSample {
 
         // Build request which will return an integer from the callable.
         Request<Integer> request = new Request<>(
-                new Callable<Integer>() {
-                    @Override
-                    public Integer call() throws Exception {
+                () -> {
 
-                        // Run the loop 10 times and sleep for 200ms.
-                        int i;
-                        for(i = 0; i < 10; i++) {
-                            Thread.sleep(200);
-                        }
-
-                        // Return the response, expected response is 10.
-                        return i;
+                    // Run the loop 10 times and sleep for 200ms.
+                    int i;
+                    for (i = 0; i < 10; i++) {
+                        Thread.sleep(200);
                     }
+
+                    // Return the response, expected response is 10.
+                    return i;
+
                 },
-                new Callback<Integer>() {
-                    @Override
-                    public void onSuccess(Integer response) {
-                        // Do work with the response here.
-                        System.out.println("Finished executing task, here is the response: " + response);
-                    }
-
-                    @Override
-                    public void onFailure(Throwable throwable) {
-                        // Handle error here.
-                        System.out.println("Something terrible happened:");
-                        throwable.printStackTrace();
-                    }
+                response -> {
+                    // Do work with the response here.
+                    System.out.println("Finished executing task, here is the response: " + response);
+                },
+                error -> {
+                    // Handle error here.
+                    System.out.println("Something terrible happened:");
+                    error.printStackTrace();
                 }
         );
 

@@ -14,11 +14,11 @@ See a sample in the sample module.
 
 Dependencies
 ------------
-The library is available on JCenter. The latest version is 1.0.0
+The library is available on JCenter. The latest version is 2.0.0
 
 **Gradle setup**
 ```gradle
-implementation 'uk.co.hassieswift621.libraries:async-threader:1.0.0'
+implementation 'uk.co.hassieswift621.libraries:async-threader:2.0.0'
 ```
 
 **Maven setup**
@@ -26,13 +26,14 @@ implementation 'uk.co.hassieswift621.libraries:async-threader:1.0.0'
 <dependency>
   <groupId>uk.co.hassieswift621.libraries</groupId>
   <artifactId>async-threader</artifactId>
-  <version>1.0.0</version>
+  <version>2.0.0</version>
   <type>pom</type>
 </dependency>
 ```
 
 Tutorial
 --------
+**Creating an async threader instance**
 ```java
 // Using the default thread pool size.
 AsyncThreader asyncThreader = new AsyncThreader.Builder()
@@ -42,33 +43,31 @@ AsyncThreader asyncThreader = new AsyncThreader.Builder()
 AsyncThreader asyncThreader = new AsyncThreader.Builder()
     .setThreadPoolSize(2)
     .build();
+```
 
+**Execute a task asynchronously and work with the response.**
+```java
 // Build request which will return a response from the callable.
+// In this example, the download of a JSON is implied.
 Request<JSONObject> request = new Request<>(
-    // The callable is executed asynchronously.
-    new Callable<JSONObject>() {
-        @Override
-        public JSONObject call() throws Exception {
-                                        
-            // Run some code to download a json.
-                   
-            // Return the response.                     
-            return jsonObject;
-        }
+    // The callable task is executed asynchronously.
+    () -> {
+        
+        // Run some code to download a JSON.
+        
+        // Return the JSON object.
+        return jsonObject;
     },
-    // The callback is executed on the calling thread.
-    new Callback<JSONObject>() {
-        @Override
-        public void onSuccess(JSONObject response) {
-            // Do work with the response here.
-            }
-            @Override
-            public void onFailure(Throwable throwable) {
-            // Error occurred. Handle error here.
-            }
-        }
-    }
-);
+    // The callbacks are executed on the calling thread.
+    response -> {
+        // Do work with the response here.
+        System.out.println(response.getJSONObject("some object").toString());
+    },
+    error -> {
+        // Error occurred. Handle if required.
+        // The error will be a Throwable type.
+        error.printStackTrace();
+});
 
 // Eexecute the request.
 asyncThreader.execute(request);
@@ -78,9 +77,33 @@ asyncThreader.execute(request);
 
 // Once done with the async threader, shut it down to release resources.
 asyncThreader.shutdown();
-
 ```
 
+**Submit a task for execution and return a CompletableFuture**
+```java
+CompletableFuture<JSONObject> future = asyncThreader.execute(
+    // The callable task to execute asynchronously.
+    () -> {
+        // Do stuff.
+        return jsonObject;
+});
+
+// Once the callable has finished executing, the completable future
+// will automatically have its complete() or completeExceptionally()
+// method called. 
+
+// Do stuff with the completable future when required.
+```
+
+**Executing a fire and forget task / no return value**
+```java
+asyncThreader.execute(
+    () -> {
+        // Some code to execute a fire and forget task
+        // or a task which has no return value.
+    }    
+);
+```
 
 License
 -------

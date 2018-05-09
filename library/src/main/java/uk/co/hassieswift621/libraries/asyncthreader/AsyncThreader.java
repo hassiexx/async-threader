@@ -1,5 +1,7 @@
 package uk.co.hassieswift621.libraries.asyncthreader;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -53,6 +55,39 @@ public class AsyncThreader {
      */
     public <T> void execute(Request<T> request) {
         mExecutorService.submit(request);
+    }
+
+    /**
+     * Submit a callable for execution and return a completable future.
+     * @param callable The task to execute.
+     * @param <T> The response data type.
+     * @return A completable future.
+     */
+    public <T> CompletableFuture<T> execute(Callable<T> callable) {
+
+        // Create completable future.
+        CompletableFuture<T> future = new CompletableFuture<>();
+
+        // Create request.
+        Request<T> request = new Request<>(
+                callable,
+                future::complete,
+                future::completeExceptionally
+        );
+
+        // Execute request.
+        mExecutorService.submit(request);
+
+        return future;
+    }
+
+    /**
+     * Submit a fire and forget task for execution.
+     * @param runnable A fire and forget task to execute.
+     */
+    public void execute(Runnable runnable) {
+        // Execute request.
+        mExecutorService.submit(runnable);
     }
 
     /**
