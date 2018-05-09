@@ -1,12 +1,12 @@
 Async Threader [![CircleCI](https://circleci.com/gh/hassieswift621/async-threader.svg?style=svg)](https://circleci.com/gh/hassieswift621/async-threader) [ ![Download](https://api.bintray.com/packages/hassieswift621/maven/async-threader/images/download.svg) ](https://bintray.com/hassieswift621/maven/async-threader/_latestVersion) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/14333c1f3d0b44ca9f2efcdb375f498a)](https://www.codacy.com/app/hassieswift621/async-threader?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hassieswift621/async-threader&amp;utm_campaign=Badge_Grade)
 ==============
 
-Async Threader is a simple to use type-safe Java asynchronous threader which creates a thread pool and uses callable and future tasks to execute tasks asynchronously.
+Async Threader is a simple to use type-safe Java library which ensures that callables and futures are fully asynchronous. No need to check whether a future has finished executing any longer!
 
 The async threader makes use of callables and futures to do this.
 The async threader creates a fixed thread pool size. By default it is the number of CPUs / CPU cores + 1, but can be customised.
 
-The request uses a callable which does execution asynchronously and a callback which does post execution on the calling thread, perfect for many tasks such as API requests.
+The request uses a callable which does execution asynchronously and a callback which does post execution on the calling thread, perfect for many tasks.
 
 After finishing with the async threader, you should call the shutdown method to free up any resources used by the thread pool.
 
