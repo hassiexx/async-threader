@@ -4,5 +4,5 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>uk.co.hassieswift621.libraries</groupId>
   <artifactId>async-threader</artifactId>
-  <version>2.0.0</version>
+  <version>2.0.1</version>
 </project>

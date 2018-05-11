@@ -12,8 +12,7 @@ public class AsyncThreaderSample {
 
         // Build the async threader.
         // Use the default number of thread pools = number of CPUs/CPU cores + 1.
-        AsyncThreader asyncThreader = new AsyncThreader.Builder()
-                .build();
+        AsyncThreader asyncThreader = new AsyncThreader();
 
         // Build request which will return an integer from the callable.
         Request<Integer> request = new Request<>(

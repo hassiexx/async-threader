@@ -14,11 +14,11 @@ See a sample in the sample module.
 
 Dependencies
 ------------
-The library is available on JCenter. The latest version is 2.0.0
+The library is available on JCenter. The latest version is 2.0.1.
 
 **Gradle setup**
 ```gradle
-implementation 'uk.co.hassieswift621.libraries:async-threader:2.0.0'
+implementation 'uk.co.hassieswift621.libraries:async-threader:2.0.1'
 ```
 
 **Maven setup**
@@ -26,7 +26,7 @@ implementation 'uk.co.hassieswift621.libraries:async-threader:2.0.0'
 <dependency>
   <groupId>uk.co.hassieswift621.libraries</groupId>
   <artifactId>async-threader</artifactId>
-  <version>2.0.0</version>
+  <version>2.0.1</version>
   <type>pom</type>
 </dependency>
 ```
