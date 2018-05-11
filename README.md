@@ -36,8 +36,7 @@ Tutorial
 **Creating an async threader instance**
 ```java
 // Using the default thread pool size.
-AsyncThreader asyncThreader = new AsyncThreader.Builder()
-    .build();
+AsyncThreader asyncThreader = new AsyncThreader();
 
 // Using a custom thread pool size.
 AsyncThreader asyncThreader = new AsyncThreader.Builder()

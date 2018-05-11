@@ -1,5 +1,5 @@
 group = 'uk.co.hassieswift621.libraries'
-version = '2.0.0'
+version = '2.0.1'
 
 apply plugin: 'java'
 apply plugin: 'com.novoda.bintray-release'
@@ -19,7 +19,7 @@ publish {
     userOrg = 'hassieswift621'
     groupId = 'uk.co.hassieswift621.libraries'
     artifactId = 'async-threader'
-    publishVersion = '2.0.0'
+    publishVersion = '2.0.1'
     desc = 'A type-safe Java async threader which creates a fixed thread pool and uses callables and futures to execute tasks asynchronously.'
     website = 'https://github.com/hassieswift621/async-threader'
 }

@@ -42,12 +42,21 @@ public class AsyncThreader {
     }
 
     /**
-     * Creates the async threader instance.
+     * Creates the async threader instance with default options.
+     */
+    public AsyncThreader() {
+        new Builder().build();
+    }
+
+    /**
+     * Creates the async threader instance with custom options.
      * @param threadPoolSize The thread pool size.
      */
     private AsyncThreader(int threadPoolSize) {
         mExecutorService = Executors.newFixedThreadPool(threadPoolSize);
     }
+
+
 
     /**
      * Submit a request for execution.
