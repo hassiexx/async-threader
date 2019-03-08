@@ -1,5 +1,5 @@
-group = 'uk.co.hassieswift621.libraries'
-version = '2.0.1'
+group = 'uk.co.hassie.libraries'
+version = '2.1.0'
 
 apply plugin: 'java'
 

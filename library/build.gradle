@@ -1,5 +1,5 @@
-group = 'uk.co.hassieswift621.libraries'
-version = '2.0.2'
+group = 'uk.co.hassie.libraries'
+version = '2.1.0'
 
 apply plugin: 'java'
 apply plugin: 'com.novoda.bintray-release'
@@ -11,15 +11,15 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.novoda:bintray-release:0.8.1'
+        classpath 'com.novoda:bintray-release:0.9'
     }
 }
 
 publish {
-    userOrg = 'hassieswift621'
-    groupId = 'uk.co.hassieswift621.libraries'
+    userOrg = 'hassie'
+    groupId = 'uk.co.hassie.libraries'
     artifactId = 'async-threader'
-    publishVersion = '2.0.2'
-    desc = 'A type-safe Java async threader which creates a fixed thread pool and uses callables and futures to execute tasks asynchronously.'
+    publishVersion = '2.1.0'
+    desc = 'A type-safe Java async threader which automatically executes callbacks after a callable or future completes or fails.'
     website = 'https://github.com/hassieswift621/async-threader'
 }

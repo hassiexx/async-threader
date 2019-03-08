@@ -1,15 +1,11 @@
-package uk.co.hassieswift621.libraries.asyncthreader.sample;
+package uk.co.hassie.libraries.asyncthreader.sample;
 
-import uk.co.hassieswift621.libraries.asyncthreader.AsyncThreader;
-import uk.co.hassieswift621.libraries.asyncthreader.Request;
+import uk.co.hassie.libraries.asyncthreader.AsyncThreader;
+import uk.co.hassie.libraries.asyncthreader.Request;
 
-/**
- * Created by Hassie on Thursday, 26 April, 2018 - 13:42.
- */
 public class AsyncThreaderSample {
 
     public static void main(String[] args) {
-
         // Build the async threader.
         // Use the default number of thread pools = number of CPUs/CPU cores + 1.
         AsyncThreader asyncThreader = new AsyncThreader();
@@ -56,7 +52,6 @@ public class AsyncThreaderSample {
 
         // Shutdown the async threader.
         asyncThreader.shutdown();
-
     }
 
 }

@@ -14,23 +14,20 @@
  * limitations under the License.
  */
 
-package uk.co.hassieswift621.libraries.asyncthreader;
+package uk.co.hassie.libraries.asyncthreader;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * Created by Hassie on Wednesday, 25 April, 2018 - 12:01.
- */
 public class AsyncThreader {
 
     private ExecutorService mExecutorService;
 
     public static class Builder {
 
-        private int threadPoolSize = Runtime.getRuntime().availableProcessors() + 1;
+        private int threadPoolSize;
 
         /**
          * Set a custom thread pool size.
@@ -40,8 +37,6 @@ public class AsyncThreader {
          * @return The builder instance.
          */
         public Builder setThreadPoolSize(int threadPoolSize) {
-            if (threadPoolSize <= 0)
-                return this;
             this.threadPoolSize = threadPoolSize;
             return this;
         }
@@ -52,7 +47,11 @@ public class AsyncThreader {
          * @return The async threader instance.
          */
         public AsyncThreader build() {
-            return new AsyncThreader(threadPoolSize);
+            if (threadPoolSize > 0) {
+                return new AsyncThreader(threadPoolSize);
+            }
+
+            return new AsyncThreader();
         }
 
     }
@@ -66,6 +65,7 @@ public class AsyncThreader {
 
     /**
      * Creates the async threader instance with custom options.
+     *
      * @param threadPoolSize The thread pool size.
      */
     private AsyncThreader(int threadPoolSize) {
@@ -73,9 +73,9 @@ public class AsyncThreader {
     }
 
 
-
     /**
      * Submit a request for execution.
+     *
      * @param request The request to execute.
      */
     public <T> void execute(Request<T> request) {
@@ -84,12 +84,12 @@ public class AsyncThreader {
 
     /**
      * Submit a callable for execution and return a completable future.
+     *
      * @param callable The task to execute.
-     * @param <T> The response data type.
+     * @param <T>      The response data type.
      * @return A completable future.
      */
     public <T> CompletableFuture<T> execute(Callable<T> callable) {
-
         // Create completable future.
         CompletableFuture<T> future = new CompletableFuture<>();
 
@@ -108,6 +108,7 @@ public class AsyncThreader {
 
     /**
      * Submit a fire and forget task for execution.
+     *
      * @param runnable A fire and forget task to execute.
      */
     public void execute(Runnable runnable) {
@@ -116,7 +117,7 @@ public class AsyncThreader {
     }
 
     /**
-     * Shutdown the async threader.
+     * Shutdown the async threader's executor service.
      */
     public void shutdown() {
         mExecutorService.shutdown();

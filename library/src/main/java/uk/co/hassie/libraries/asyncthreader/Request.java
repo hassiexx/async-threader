@@ -1,24 +1,22 @@
-package uk.co.hassieswift621.libraries.asyncthreader;
+package uk.co.hassie.libraries.asyncthreader;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
-/**
- * Created by Hassie on Thursday, 26 April, 2018 - 13:03.
- */
 public class Request<T> extends FutureTask<T> {
 
-    private final IResponse<T> mResponse;
-    private final IError mError;
+    private final Response<T> mResponse;
+    private final Error mError;
 
     /**
      * Create a request.
+     *
      * @param callable The callable to execute.
      * @param response The response callback.
-     * @param error The error callback.
+     * @param error    The error callback.
      */
-    public Request(Callable<T> callable, IResponse<T> response, IError error) {
+    public Request(Callable<T> callable, Response<T> response, Error error) {
         super(callable);
         mResponse = response;
         mError = error;
