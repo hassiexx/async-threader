@@ -22,8 +22,8 @@ import java.util.concurrent.FutureTask;
 
 public class Request<T> extends FutureTask<T> {
 
-    private final Response<T> mResponse;
-    private final Error mError;
+    private final Response<T> response;
+    private final Error error;
 
     /**
      * Create a request.
@@ -34,21 +34,22 @@ public class Request<T> extends FutureTask<T> {
      */
     public Request(Callable<T> callable, Response<T> response, Error error) {
         super(callable);
-        mResponse = response;
-        mError = error;
+        this.response = response;
+        this.error = error;
     }
 
     /**
-     * Run the callback after the task is completed.
+     * Executes the callbacks after task has completed.
      */
     @Override
     protected void done() {
         try {
-            mResponse.onResponse(this.get());
+            this.response.onResponse(this.get());
         } catch (InterruptedException e) {
-            mError.onError(e);
+            this.error.onError(e);
         } catch (ExecutionException e) {
-            mError.onError(e.getCause());
+            this.error.onError(e.getCause());
         }
     }
+
 }

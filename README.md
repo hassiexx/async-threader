@@ -15,9 +15,11 @@ Dependencies
 ------------
 The library is available on JCenter. The latest version is 2.1.0.
 
+Replace ``{LATEST-VERSION}`` with the latest version.
+
 **Gradle setup**
 ```gradle
-implementation 'uk.co.hassie.libraries:async-threader:<LATEST-VERSION>'
+implementation 'uk.co.hassie.libraries:async-threader:{LATEST-VERSION}'
 ```
 
 **Maven setup**
@@ -25,7 +27,7 @@ implementation 'uk.co.hassie.libraries:async-threader:<LATEST-VERSION>'
 <dependency>
   <groupId>uk.co.hassie.libraries</groupId>
   <artifactId>async-threader</artifactId>
-  <version><LATEST-VERSION></version>
+  <version>{LATEST-VERSION}</version>
   <type>pom</type>
 </dependency>
 ```

@@ -23,7 +23,7 @@ import java.util.concurrent.Executors;
 
 public class AsyncThreader {
 
-    private ExecutorService mExecutorService;
+    private ExecutorService executorService;
 
     public static class Builder {
 
@@ -60,7 +60,7 @@ public class AsyncThreader {
      * Creates the async threader instance with default options.
      */
     public AsyncThreader() {
-        mExecutorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1);
+        executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1);
     }
 
     /**
@@ -69,7 +69,7 @@ public class AsyncThreader {
      * @param threadPoolSize The thread pool size.
      */
     private AsyncThreader(int threadPoolSize) {
-        mExecutorService = Executors.newFixedThreadPool(threadPoolSize);
+        executorService = Executors.newFixedThreadPool(threadPoolSize);
     }
 
 
@@ -79,7 +79,7 @@ public class AsyncThreader {
      * @param request The request to execute.
      */
     public <T> void execute(Request<T> request) {
-        mExecutorService.submit(request);
+        executorService.submit(request);
     }
 
     /**
@@ -101,7 +101,7 @@ public class AsyncThreader {
         );
 
         // Execute request.
-        mExecutorService.submit(request);
+        executorService.submit(request);
 
         return future;
     }
@@ -113,14 +113,14 @@ public class AsyncThreader {
      */
     public void execute(Runnable runnable) {
         // Execute request.
-        mExecutorService.submit(runnable);
+        executorService.submit(runnable);
     }
 
     /**
      * Shutdown the async threader's executor service.
      */
     public void shutdown() {
-        mExecutorService.shutdown();
+        executorService.shutdown();
     }
 
 }
