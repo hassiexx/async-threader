@@ -32,7 +32,7 @@ buildscript {
 }
 
 publish {
-    userOrg = 'hassie'
+    userOrg = 'hassieswift621'
     groupId = 'uk.co.hassie.libraries'
     artifactId = 'async-threader'
     publishVersion = '2.1.0'
